@@ -9,10 +9,13 @@
   "license": "ISC",
   "dependencies": {
     "env-cmd": "^9.0.3",
+    "knex": "^0.19.2",
+    "knex-migrate": "^1.7.2",
     "koa": "^2.8.1",
     "koa-bodyparser": "^4.2.1",
     "koa-helmet": "^5.1.0",
-    "koa-router": "^7.4.0"
+    "koa-router": "^7.4.0",
+    "pg": "^7.12.1"
   },
   "devDependencies": {
     "koa-morgan": "^1.0.1",
