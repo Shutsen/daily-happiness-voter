@@ -16,12 +16,15 @@ Users.getAllUsers = async () => {
 
 Users.getUserByEmail = async (email) => {
 	try {
-		const response = await knex('users')
+		const user = await knex('users')
 			.select('*')
 			.where('email', email)
+			.first()
 
-		return response
-
+		if (user) {
+			return user
+		}
+		return null
 	} catch(err) {
 		console.error('Users query: Failed to get individual user')
 		throw err
@@ -36,6 +39,17 @@ Users.signup = async ({ first_name, last_name, email, password }) => {
 		return response
 	} catch(err) {
 		console.error('Users query: Failed to get users')
+		throw err
+	}
+}
+
+Users.saveAuthToken = async (userEmail, token) => {
+	try {
+		const reponse = await knex('users')
+			.update('token', token)
+			.where('email', userEmail)
+	} catch(err) {
+		console.error('Users query: Failed to save token')
 		throw err
 	}
 }

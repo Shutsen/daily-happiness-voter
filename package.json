@@ -10,6 +10,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "env-cmd": "^9.0.3",
+    "jsonwebtoken": "^8.5.1",
     "knex": "^0.19.2",
     "knex-migrate": "^1.7.2",
     "koa": "^2.8.1",
