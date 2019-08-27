@@ -14,6 +14,20 @@ Users.getAllUsers = async () => {
 	}
 }
 
+Users.getUserByEmail = async (email) => {
+	try {
+		const response = await knex('users')
+			.select('*')
+			.where('email', email)
+
+		return response
+
+	} catch(err) {
+		console.error('Users query: Failed to get individual user')
+		throw err
+	}
+}
+
 Users.signup = async ({ first_name, last_name, email, password }) => {
 	try {
 		const response = await knex('users')
