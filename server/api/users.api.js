@@ -11,9 +11,17 @@ router.get('/', async ctx => {
 
 router.post('/signup', async ctx => {
 	let { first_name, last_name, email, password } = ctx.request.body
+
+	// check if email already exists
+	// if so return early
+	const existingUser = await users.getUserByEmail(email)
+	if (existingUser.length > 0) {
+		return ctx.body = { message: 'This email address is already in use..' }
+	}
+
 	const hashedPassword = await auth.hash(password)
 
-	const response = await users.signup({
+	await users.signup({
 		first_name,
 		last_name,
 		email,
