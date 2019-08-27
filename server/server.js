@@ -4,6 +4,7 @@ const bodyParser = require('koa-bodyparser')
 const morgan = require('koa-morgan')
 const helmet = require('koa-helmet')
 const KoaRouter = require('koa-router')
+const api = require('./api')
 
 const app = new Koa()
 const router = new KoaRouter()
@@ -23,6 +24,7 @@ app.on('error', (err) => {
 app.use(helmet())
 app.use(bodyParser())
 app.use(morgan('dev'))
+app.use(api.routes())
 app.use(router.routes())
 
 server.listen(port, () => {
