@@ -1,4 +1,5 @@
 const knex = require('../connection')
+const { getYearMonthDay } = require('../../services/date')
 
 let Users = {}
 
@@ -50,6 +51,18 @@ Users.saveAuthToken = async (userEmail, token) => {
 			.where('email', userEmail)
 	} catch(err) {
 		console.error('Users query: Failed to save token')
+		throw err
+	}
+}
+
+Users.updateLastVotedAt = async (email) => {
+	try {
+		return await knex('users')
+			.update({ last_voted_at: getYearMonthDay() })
+			.where('email', email)
+
+	} catch(err) {
+		console.error('Users query: Failed to update last_voted_at')
 		throw err
 	}
 }
