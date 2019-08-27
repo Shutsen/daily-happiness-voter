@@ -2,6 +2,11 @@
   "name": "happiness-voter",
   "version": "1.0.0",
   "scripts": {
+    "database:drop": "knex-migrate down --to 0",
+    "database:reset": "npm run database:drop && npm run database:setup",
+    "database:setup": "knex migrate:latest",
+    "database:rollback": "knex migrate:rollback",
+    "database:migrate": "knex migrate:latest",
     "server": "env-cmd -f ./config/dev.env nodemon --watch server ./server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
