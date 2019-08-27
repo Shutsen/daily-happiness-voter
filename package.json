@@ -2,8 +2,20 @@
   "name": "happiness-voter",
   "version": "1.0.0",
   "scripts": {
+    "server": "env-cmd -f ./config/dev.env nodemon --watch server ./server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Geert Van Campenhout",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "env-cmd": "^9.0.3",
+    "koa": "^2.8.1",
+    "koa-bodyparser": "^4.2.1",
+    "koa-helmet": "^5.1.0",
+    "koa-router": "^7.4.0"
+  },
+  "devDependencies": {
+    "koa-morgan": "^1.0.1",
+    "nodemon": "^1.19.1"
+  }
 }
