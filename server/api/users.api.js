@@ -58,6 +58,7 @@ router.post('/login', async ctx => {
 
 	return ctx.body = {
 		message: 'Succesfully logged in',
+		user_id: user.id,
 		token
 	}
 })

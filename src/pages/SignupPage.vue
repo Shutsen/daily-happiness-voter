@@ -4,7 +4,7 @@
 			<div class="container">
 				<h1 class="title">Start voting!</h1>
 				<h2 class="subtitle">By filling in the following form</h2>
-				<div class="signup-form">
+				<div class="form-wrapper">
 					<div class="input-fields">
 						<InputText v-model="first_name" label="First name" required/>
 						<InputText v-model="last_name" label="Last name" required/>
@@ -75,6 +75,7 @@ export default {
 			try {
 				const { first_name, last_name, email, password } = this
 				const response = await usersApi.signup({ first_name, last_name, email, password })
+				localStorage.setItem('access_token', response.token)
 				this.$snotify.success(response.message)
 				this.$router.push(`/dashboard/${response.user_id}`)
 			} catch(e) {
@@ -85,15 +86,3 @@ export default {
 	}
 }
 </script>
-
-<style scoped>
-.signup-form {
-	width: 600px;
-	margin: 0 auto;
-}
-
-.input-fields {
-	display: flex;
-	margin-bottom: 18px;
-}
-</style>

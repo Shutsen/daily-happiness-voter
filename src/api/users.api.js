@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+const token = localStorage.getItem('access_token')
+
 let Users = {}
 
 /**
@@ -19,9 +21,26 @@ Users.signup = async ({ first_name, last_name, email, password }) => {
 	}
 }
 
+/**
+ * User login
+ * @param {String} email
+ * @param {String} password
+ */
+Users.login = async ({ email, password }) => {
+	try {
+		const response = await axios.post('/api/users/login', { email, password })
+		return response.data
+	} catch(e) {
+		console.error(e)
+		throw e
+	}
+}
+
 Users.getUserDetail = async ({ user_id }) => {
 	try {
-		const response = await axios.get(`/api/users/${user_id}`)
+		const response = await axios.get(`/api/users/${user_id}`, {
+			headers: { Authorization: `Bearer ${token}` }
+		})
 		return response.data
 	} catch(e) {
 		console.error(e)
