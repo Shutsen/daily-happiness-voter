@@ -1,5 +1,5 @@
 const knex = require('../connection')
-const { getYearMonthDay } = require('../../services/date')
+const { getYearMonthDay } = require('../../../utils/date')
 
 let Users = {}
 
@@ -64,7 +64,7 @@ Users.signup = async ({ first_name, last_name, email, password }) => {
 
 Users.saveAuthToken = async (userEmail, token) => {
 	try {
-		const reponse = await knex('users')
+		await knex('users')
 			.update('token', token)
 			.where('email', userEmail)
 	} catch(err) {

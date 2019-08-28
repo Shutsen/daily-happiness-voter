@@ -1,5 +1,5 @@
 const knex = require('../connection')
-const { getYearMonthDay } = require('../../services/date')
+const { getYearMonthDay } = require('../../../utils/date')
 
 let Votes = {}
 
