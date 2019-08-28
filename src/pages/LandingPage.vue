@@ -14,8 +14,8 @@
 export default {
 	data() {
 		return {
-			title: 'Daily Happiness Voter',
-			subtitle: 'Pleasure, you can measure!',
+			title: 'Welcome to the Daily Happiness Voter!',
+			subtitle: 'Employee pleasure, you can measure!',
 			cta: 'Sign up now'
 		}
 	}

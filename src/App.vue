@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Header/>
+    <vue-snotify></vue-snotify>
     <router-view></router-view>
   </div>
 </template>
