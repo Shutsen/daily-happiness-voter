@@ -8,12 +8,16 @@
     "database:rollback": "knex migrate:rollback",
     "database:migrate": "knex migrate:latest",
     "server": "env-cmd -f ./config/dev.env nodemon --watch server ./server/server.js",
+    "dev": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Geert Van Campenhout",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "core-js": "^2.6.5",
     "env-cmd": "^9.0.3",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.19.2",
@@ -23,10 +27,41 @@
     "koa-helmet": "^5.1.0",
     "koa-jwt": "^3.6.0",
     "koa-router": "^7.4.0",
-    "pg": "^7.12.1"
+    "pg": "^7.12.1",
+    "vue": "^2.6.10"
   },
   "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.11.0",
+    "@vue/cli-plugin-eslint": "^3.11.0",
+    "@vue/cli-service": "^3.11.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
     "koa-morgan": "^1.0.1",
-    "nodemon": "^1.19.1"
-  }
+    "nodemon": "^1.19.1",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
 }
