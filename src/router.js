@@ -29,7 +29,7 @@ const router = new Router({
 			component: ManagerPage
 		},
 		{
-			path: '/dashboard/:user_id',
+			path: '/dashboard',
 			component: DashboardPage
 		}
 	]

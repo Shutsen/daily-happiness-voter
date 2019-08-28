@@ -1,3 +1,4 @@
+@import "utility";
 @import "~vue-snotify/styles/material";
 
 .form-wrapper {
@@ -17,5 +18,42 @@
 
 	li {
 		list-style: none;
+	}
+}
+
+.card {
+	border-radius: 10px;
+	outline: 2px solid #363636;
+  	outline-offset: -15px;
+	cursor: pointer;
+
+	&.disabled {
+		cursor: default;
+	}
+
+	.img {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		min-width: 150px;
+		min-height: 150px;
+		background-size: cover;
+
+		&.happy-face {
+			background-image: url('/img/happy.png');
+		}
+
+		&.unhappy-face {
+			background-image: url('/img/unhappy.png');
+		}
+
+		&.neutral-face {
+			background-image: url('/img/neutral.png');
+		}
+
+		&.ghost-face {
+			background-image: url('/img/ghost.png');
+		}
 	}
 }

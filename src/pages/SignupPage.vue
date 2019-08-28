@@ -76,8 +76,9 @@ export default {
 				const { first_name, last_name, email, password } = this
 				const response = await usersApi.signup({ first_name, last_name, email, password })
 				localStorage.setItem('access_token', response.token)
+				localStorage.setItem('user_id', response.user_id)
 				this.$snotify.success(response.message)
-				this.$router.push(`/dashboard/${response.user_id}`)
+				this.$router.push(`/dashboard`)
 			} catch(e) {
 				console.log('Sign up error', e)
 				return this.$snotify.error('Mmm, something went wrong... awkward.')
