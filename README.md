@@ -11,7 +11,7 @@ This project is a showcase with:
 
 To run this locally, create a postgres database "happiness_voter"
 
-Next, add a new file "dev.env" in the config folder with the following variables:
+Add a new ".env" file in your root directory with the following variables:
 ```
 PORT=3000
 JWT_KEY=secret

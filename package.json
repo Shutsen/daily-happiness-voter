@@ -7,7 +7,7 @@
     "database:setup": "knex migrate:latest && knex seed:run",
     "database:rollback": "knex migrate:rollback",
     "database:migrate": "knex migrate:latest",
-    "server": "env-cmd -f ./config/dev.env nodemon --watch server ./server/server.js",
+    "server": "nodemon --watch server ./server/server.js",
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
@@ -19,7 +19,7 @@
     "axios": "^0.19.0",
     "bcryptjs": "^2.4.3",
     "core-js": "^2.6.5",
-    "env-cmd": "^9.0.3",
+    "dotenv": "^8.1.0",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.19.2",
     "knex-migrate": "^1.7.2",
@@ -55,7 +55,9 @@
       "plugin:vue/essential",
       "eslint:recommended"
     ],
-    "rules": {},
+    "rules": {
+      "no-console": "off"
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }
