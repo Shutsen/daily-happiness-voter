@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import LandingPage from './pages/LandingPage.vue'
 import SignupPage from './pages/SignupPage.vue'
 import LoginPage from './pages/LoginPage.vue'
+import DashboardPage from './pages/DashboardPage.vue'
 
 Vue.use(Router)
 
@@ -21,6 +22,10 @@ const router = new Router({
 		{
 			path: '/login',
 			component: LoginPage
+		},
+		{
+			path: '/dashboard/:user_id',
+			component: DashboardPage
 		}
 	]
 })

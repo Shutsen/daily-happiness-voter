@@ -9,6 +9,12 @@ router.get('/', async ctx => {
 	ctx.body = response
 })
 
+router.get('/userDetail', async ctx => {
+	const { user_id } = ctx.request.body
+	const response = await users.getUserById(user_id)
+	ctx.body = response
+})
+
 router.post('/signup', async ctx => {
 	let { first_name, last_name, email, password } = ctx.request.body
 
@@ -25,6 +31,7 @@ router.post('/signup', async ctx => {
 
 	ctx.body = {
 		message: `Sweet! Succesfully signed you up, ${first_name}!`,
+		user_id: user.id,
 		token
 	}
 })

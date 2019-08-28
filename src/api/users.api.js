@@ -19,4 +19,14 @@ Users.signup = async ({ first_name, last_name, email, password }) => {
 	}
 }
 
+Users.getUserDetail = async (user_id) => {
+	try {
+		const response = await axios.get('/api/users/userDetail', { user_id })
+		return response.data
+	} catch(e) {
+		console.error(e)
+		throw e
+	}
+}
+
 export default Users

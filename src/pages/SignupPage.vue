@@ -76,11 +76,10 @@ export default {
 				const { first_name, last_name, email, password } = this
 				const response = await usersApi.signup({ first_name, last_name, email, password })
 				this.$snotify.success(response.message)
-				this.$router.push(`/dashboard`)
+				this.$router.push(`/dashboard/${response.user_id}`)
 			} catch(e) {
-				// eslint-disable-next-line
 				console.log('Sign up error', e)
-				return this.$snotify.error('Mmm, something went wrong... awkward. Try again, or contact me via geertwillsolvethis@gmail.com')
+				return this.$snotify.error('Mmm, something went wrong... awkward.')
 			}
 		}
 	}
