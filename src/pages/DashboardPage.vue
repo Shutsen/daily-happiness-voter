@@ -3,6 +3,7 @@
 		<div class="hero-body">
 			<div class="container">
 				<div>{{ message }}<span v-if="user">, {{ user.first_name }}</span></div>
+				<router-link v-if="user.is_manager" class="button is-light is-medium" to="/dashboard/manager">View your employee happiness</router-link>
 			</div>
 		</div>
 	</section>

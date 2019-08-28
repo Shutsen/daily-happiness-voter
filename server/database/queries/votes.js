@@ -10,7 +10,7 @@ Votes.getVotesForPeriod = async () => {
 		const response = await knex('daily_happiness')
 			.select('*')
 		return response
-	} catch(e) {
+	} catch(err) {
 		console.error('Votes query: Failed to get votes for period')
 		throw err
 	}

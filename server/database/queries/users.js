@@ -6,7 +6,7 @@ let Users = {}
 Users.getAllUsers = async () => {
 	try {
 		const response = await knex('users')
-			.select('first_name', 'last_name', 'last_voted_at')
+			.select('first_name', 'last_name', 'last_voted_at', 'is_manager')
 
 		return response
 	} catch(err) {
@@ -18,7 +18,7 @@ Users.getAllUsers = async () => {
 Users.getUserById = async (id) => {
 	try {
 		const user = await knex('users')
-			.select('first_name', 'last_name', 'last_voted_at')
+			.select('first_name', 'last_name', 'last_voted_at', 'is_manager')
 			.where('id', id)
 			.first()
 

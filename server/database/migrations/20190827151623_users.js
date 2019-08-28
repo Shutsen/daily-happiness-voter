@@ -8,6 +8,7 @@ exports.up = knex => {
 		table.string('password').notNullable()
 		table.string('email').notNullable().unique()
 		table.string('last_voted_at')
+		table.integer('is_manager').defaultTo(0)
 		table.string('token')
 		table.dateTime('created_on').notNullable().defaultTo(knex.fn.now())
 	})
