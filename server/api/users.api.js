@@ -1,5 +1,6 @@
 const Router = require('koa-router')
 const router = new Router()
+const { escape } = require('validator')
 
 const auth = require('../services/auth')
 const users = require('../database/queries/users')
@@ -9,8 +10,8 @@ router.get('/', async ctx => {
 	ctx.body = response
 })
 
-router.get('/userDetail', async ctx => {
-	const { user_id } = ctx.request.body
+router.get('/:user_id', async ctx => {
+	const user_id = escape(ctx.params.user_id)
 	const response = await users.getUserById(user_id)
 	ctx.body = response
 })

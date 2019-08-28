@@ -19,9 +19,9 @@ Users.signup = async ({ first_name, last_name, email, password }) => {
 	}
 }
 
-Users.getUserDetail = async (user_id) => {
+Users.getUserDetail = async ({ user_id }) => {
 	try {
-		const response = await axios.get('/api/users/userDetail', { user_id })
+		const response = await axios.get(`/api/users/${user_id}`)
 		return response.data
 	} catch(e) {
 		console.error(e)
