@@ -35,9 +35,10 @@ Users.getUserByEmail = async (email) => {
 Users.signup = async ({ first_name, last_name, email, password }) => {
 	try {
 		const response = await knex('users')
+			.returning('*')
 			.insert({ first_name, last_name, email, password })
 
-		return response
+		return response[0]
 	} catch(err) {
 		console.error('Users query: Failed to get users')
 		throw err

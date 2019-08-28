@@ -18,8 +18,15 @@ router.post('/signup', async ctx => {
 		return ctx.body = { message: 'This email address is already in use..' }
 	}
 	password = await auth.hash(password)
-	await users.signup({ first_name, last_name, email, password })
-	ctx.body = { message: `Sweet! Succesfully signed you up, ${first_name}!` }
+	const user = await users.signup({ first_name, last_name, email, password })
+
+	const token = auth.generateAuthToken(user)
+	users.saveAuthToken(user.email, token)
+
+	ctx.body = {
+		message: `Sweet! Succesfully signed you up, ${first_name}!`,
+		token
+	}
 })
 
 router.post('/login', async ctx => {
@@ -41,7 +48,10 @@ router.post('/login', async ctx => {
 	const token = auth.generateAuthToken(user)
 	users.saveAuthToken(user.email, token)
 
-	return ctx.body = { message: 'Succesfully logged in' }
+	return ctx.body = {
+		message: 'Succesfully logged in',
+		token
+	}
 })
 
 module.exports = router

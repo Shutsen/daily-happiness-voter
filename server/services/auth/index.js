@@ -30,7 +30,7 @@ Auth.authenticate = async (inputPassword, hashedPassword) => {
  * @returns {String} token - the generated token
  */
 Auth.generateAuthToken = (user) => {
-	const token = jwt.sign({ _id: user.id.toString() }, process.env.JWT_KEY)
+	const token = jwt.sign({ id: user.id }, process.env.JWT_KEY)
 	return token
 }
 
