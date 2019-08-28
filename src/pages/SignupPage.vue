@@ -29,6 +29,7 @@
 
 <script>
 import InputText from '../components/input/InputText'
+import usersApi from '../api/users.api'
 
 export default {
 	components: { InputText },
@@ -53,7 +54,7 @@ export default {
 				return false
 			}
 			if (!this.password || !this.passwordRepeat) {
-				this.errorMessage = 'Please fill in your password and confirmation password'
+				this.errorMessage = 'Please fill in both your password and confirmation password'
 				return false
 			}
 			if (this.password !== this.passwordRepeat) {
@@ -63,10 +64,23 @@ export default {
 			this.errorMessage = ''
 			return true
 		},
-		signup() {
+		async signup() {
+			// validation
 			const isValid = this.validateFields()
 			if (!isValid) {
 				return this.$snotify.error(this.errorMessage)
+			}
+
+			// try signing up
+			try {
+				const { first_name, last_name, email, password } = this
+				const response = await usersApi.signup({ first_name, last_name, email, password })
+				this.$snotify.success(response.message)
+				this.$router.push(`/dashboard`)
+			} catch(e) {
+				// eslint-disable-next-line
+				console.log('Sign up error', e)
+				return this.$snotify.error('Mmm, something went wrong... awkward. Try again, or contact me via geertwillsolvethis@gmail.com')
 			}
 		}
 	}
