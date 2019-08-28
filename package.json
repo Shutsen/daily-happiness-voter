@@ -16,6 +16,7 @@
   "author": "Geert Van Campenhout",
   "license": "ISC",
   "dependencies": {
+    "@koa/cors": "^2.2.3",
     "axios": "^0.19.0",
     "bcryptjs": "^2.4.3",
     "core-js": "^2.6.5",

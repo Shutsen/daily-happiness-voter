@@ -12,10 +12,9 @@ let Users = {}
 Users.signup = async ({ first_name, last_name, email, password }) => {
 	try {
 		const response = await axios.post('/api/users/signup', { first_name, last_name, email, password })
-		console.log(response)
 		return response.data
 	} catch(e) {
-		console.log(e)
+		console.error(e)
 		throw e
 	}
 }
