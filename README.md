@@ -1,8 +1,39 @@
 # The Daily Happiness Voter
+Heyy! Let's vote happy faces!
+
+This project is a showcase with:
+
+* node.js, Koa and knex in the backend
+* vue.js in the frontend
+* postgres as a database
 
 ## Project setup
+
+To run this locally, create a postgres database "happiness_voter"
+
+Next, add a new file "dev.env" in the config folder with the following variables:
+```
+PORT=3000
+JWT_KEY=secret
+DATABASE_HOST=localhost
+DATABASE_NAME=happiness_voter
+```
+
+## Install dependencies
 ```
 npm install
+```
+
+### Run the server
+```
+npm run server
+```
+
+### Database setup
+Globally install the knex package, to seed your database and to use the knex command scripts, which you can find in package.json
+```
+npm i -g knex
+npm run database:setup
 ```
 
 ### Compiles and hot-reloads for development
@@ -24,6 +55,3 @@ npm run test
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
