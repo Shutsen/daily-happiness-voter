@@ -7,6 +7,9 @@ const config = {
 	migrations: {
 		directory: path.join(BASE_PATH, 'migrations')
 	},
+	seeds: {
+		directory: path.join(BASE_PATH, 'seeds')
+	}
 }
 
 module.exports = config
