@@ -6,10 +6,11 @@ let Votes = {}
 
 /**
  * Get happiness score for certain period
+ * @param {String} days = '1', '7' or '30'
  */
-Votes.getHappinessScoreForPeriod = async () => {
+Votes.getVotesForPeriod = async (days) => {
 	try {
-		const response = await axios.get('/api/votes', {
+		const response = await axios.get(`/api/votes/${days}`, {
 			headers: { Authorization: `Bearer ${token}` }
 		})
 		return response.data

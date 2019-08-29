@@ -3,12 +3,12 @@ const { getYearMonthDay } = require('../../../utils/date')
 
 let Votes = {}
 
-// period will be one of following: today, last_week, last_month
-// until that's wired up, we get all days
-Votes.getVotesForPeriod = async () => {
+Votes.getVotesForPeriod = async (days) => {
 	try {
 		const response = await knex('daily_happiness')
 			.select('*')
+			.limit(days)
+			
 		return response
 	} catch(err) {
 		console.error('Votes query: Failed to get votes for period')

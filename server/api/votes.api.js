@@ -4,8 +4,9 @@ const router = new Router()
 const votes = require('../database/queries/votes')
 const users = require('../database/queries/users')
 
-router.get('/', async ctx => {
-	const response = await votes.getVotesForPeriod()
+router.get('/:days', async ctx => {
+	const days = escape(ctx.params.days)
+	const response = await votes.getVotesForPeriod(days)
 	ctx.body = response
 })
 
