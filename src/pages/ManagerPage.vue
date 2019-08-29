@@ -2,8 +2,9 @@
 	<section class="hero is-fullheight is-dark is-bold">
 		<div class="hero-body">
 			<div class="container">
-				<h1 class="title">Manager - Happiness insights</h1>
-				<div class="tile-wrapper tile is-ancestor">
+				<router-link class="button is-primary mb-30px" :to="`/dashboard`">Back to dashboard</router-link>
+				<h1 class="title mt-30px">Manager - Happiness insights</h1>
+				<div class="tile-wrapper tile is-ancestor mt-30px">
 					<div class="tile is-vertical is-8">
 						<div class="tile is-parent">
 							<article class="tile is-child notification is-light p-30px">
