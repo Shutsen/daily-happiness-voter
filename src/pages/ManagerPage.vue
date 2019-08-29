@@ -9,9 +9,7 @@
 							<article class="tile is-child notification is-light p-30px">
 								<p class="title">Scores</p>
 								<InputRadioButtons v-model="selectedView" :options="viewOptions"/>
-								<div class="insights-table" >
-									<InsightsTable :daily_scores="daily_scores"/>
-								</div>
+								<InsightsTable :daily_scores="daily_scores"/>
 							</article>
 						</div>
 					</div>

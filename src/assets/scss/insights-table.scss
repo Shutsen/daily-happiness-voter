@@ -3,4 +3,30 @@
 	min-height: 200px;
 	max-height: 200px;
 	overflow-y: auto;
+
+	.avg-score {
+		position: relative;
+		z-index: 1;
+	
+		&:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 50%;
+			transform: translate(-50%, 4px);
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			background-color: rgba(0, 0, 0, 0.2);
+			z-index: 0;
+		}
+
+		&.green::before {
+			background-color: rgba(79, 255, 117, 0.4);
+		}
+
+		&.red::before {
+			background-color: rgba(255, 97, 79, 0.4);
+		}
+	}
 }
