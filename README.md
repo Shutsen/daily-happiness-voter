@@ -27,6 +27,7 @@ PORT=3000
 JWT_KEY=secret
 DATABASE_HOST=localhost
 DATABASE_NAME=happiness_voter
+SENDGRID_API_KEY=<yoursendgridapikey>
 ```
 
 ## Install dependencies

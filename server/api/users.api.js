@@ -1,5 +1,6 @@
 const Router = require('koa-router')
 const router = new Router()
+const { sendWelcomeEmail } = require('../services/emails/account')
 const { escape } = require('validator')
 
 const auth = require('../services/auth')
@@ -28,7 +29,9 @@ router.post('/signup', async ctx => {
 	const user = await users.signup({ first_name, last_name, email, password })
 
 	const token = auth.generateAuthToken(user)
-	users.saveAuthToken(user.email, token)
+	users.saveAuthToken(email, token)
+
+	sendWelcomeEmail(email, first_name)
 
 	ctx.body = {
 		message: `Sweet! Succesfully signed you up, ${first_name}!`,
