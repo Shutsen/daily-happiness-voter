@@ -1,5 +1,6 @@
 @import "input";
 @import "card";
+@import "insights-table";
 @import "tailwind";
 @import "~vue-snotify/styles/material";
 
@@ -11,9 +12,5 @@
 .hero.is-dark .tile-wrapper {
 	.title, .subtitle {
 		color: black;
-	}
-
-	li {
-		list-style: none;
 	}
 }
