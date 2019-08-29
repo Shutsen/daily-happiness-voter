@@ -62,7 +62,7 @@ export default {
 				this.$router.push(`/dashboard`)
 			} catch(e) {
 				console.log('Sign up error', e)
-				return this.$snotify.error('Mmm, something went wrong... awkward.')
+				return this.$snotify.error('Authentication failed')
 			}
 		}
 	}

@@ -16,15 +16,6 @@
 		<div class="navbar-start">
 			<a class="navbar-item" :href="links.github" target="_blank">View source code</a>
 		</div>
-
-		<div class="navbar-end">
-		<div class="navbar-item">
-			<div class="buttons">
-				<router-link class="button is-primary" to="/signup"><strong>Sign up</strong></router-link>
-				<router-link class="button is-light" to="/login">Login</router-link>
-			</div>
-		</div>
-		</div>
 	</div>
 </nav>
 </template>
