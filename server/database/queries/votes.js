@@ -6,6 +6,7 @@ let Votes = {}
 Votes.getVotesForPeriod = async (days) => {
 	try {
 		const response = await knex('daily_happiness')
+			.orderBy('date', 'desc')
 			.select('*')
 			.limit(days)
 			
