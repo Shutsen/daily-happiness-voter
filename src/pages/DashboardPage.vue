@@ -5,33 +5,10 @@
 				<div v-if="!loaded"></div>
 				<div v-else-if="error">
 					<h2 class="title">This user does not exist</h2>
-					<router-link class="button is-light is-medium" :to="`/dashboard`">Try again</router-link>
+					<router-link class="button is-light is-medium" :to="`/login`">Try again</router-link>
 				</div>
-				<div v-else-if="hasVotedToday">
-					<h2 class="title">Thanks for submitting your vote today<span v-if="user">, {{ user.first_name }}</span></h2>
-					<p class="mb-30px">Tomorrow you can vote again!</p>
-					<div class="columns">
-						<div class="column"></div>
-						<div class="column">
-							<Card :state="ghostState" :disabled="true"/>
-						</div>
-						<div class="column"></div>
-					</div>
-				</div>
-				<div v-else>
-					<h2 class="title">{{ message }}<span v-if="user">, {{ user.first_name }}</span></h2>
-					<router-link v-if="user.is_manager" class="button is-primary is-medium mb-30px" to="/dashboard/manager">View your employee happiness</router-link>
-					<div>
-						<p>Today, you haven't voted yet!</p>
-						<p class="mb-30px">How are you feeling like?</p>
-						<div class="columns">
-							<div class="column" v-for="(state, i) in states" :key="i">
-								<Card :state="state" @select="onSelect"/>
-							</div>
-						</div>
-						<p>All data is being registered anonymously.</p>
-					</div>
-				</div>
+				<HasVotedView v-else-if="hasVotedToday" :user="user"/>
+				<HasNotVotedView v-else :user="user" :user_id="user_id" @voted="getUserDetail"/>
 			</div>
 		</div>
 	</section>
@@ -39,23 +16,16 @@
 
 <script>
 import usersApi from '../api/users.api'
-import votesApi from '../api/votes.api'
 import { getYearMonthDay } from '../../utils/date'
-import Card from '../components/Card'
+import HasVotedView from '../components/HasVotedView'
+import HasNotVotedView from '../components/HasNotVotedView'
 
 export default {
-	components: { Card },
+	components: { HasVotedView, HasNotVotedView },
 	data() {
 		return {
-			message: 'Welcome to your dashboard',
 			user: null,
 			user_id: localStorage.getItem('user_id'),
-			states: [
-				{ expression: 'unhappy', score: -1 },
-				{ expression: 'neutral', score: 0 },
-				{ expression: 'happy', score: 1 },
-			],
-			ghostState: { expression: 'ghost', },
 			error: false,
 			loaded: false
 		}
@@ -80,10 +50,6 @@ export default {
 			} catch(err) {
 				this.error = true
 			}
-		},
-		async onSelect(state) {
-			await votesApi.addVote(state.score, this.user_id)
-			this.getUserDetail()
 		}
 	}
 }
