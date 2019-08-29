@@ -7,6 +7,16 @@ This project is a showcase with:
 * vue.js in the frontend
 * postgres as a database
 
+## After setup
+When you seed your database, you have 4 users, all with the password '12345'. You can login using this pass and one of the emails:
+
+Everyone can vote their happiness level of the day. Only managers can view the insights page.
+
+* cor@tisone.com (employee)
+* brik@olage.com (employee)
+* conny@komen.com (employee)
+* magda@wel.com (manager)
+
 ## Project setup
 
 To run this locally, create a postgres database "happiness_voter"

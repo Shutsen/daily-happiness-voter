@@ -21,6 +21,14 @@ exports.seed = async knex => {
 			last_name: 'Komen',
 			password: '$2a$10$QKAmGCuhe.05vTT2SVJHq.V7by7hXz/BTdRemPqPUwCEJdhDI4fq2',
 			email: 'conny@komen.com'
+		},
+		{ 
+			id: "2dbd864f-5005-4a2e-9e98-21a289a86eca",
+			first_name: 'Magda',
+			last_name: 'Wel',
+			password: '$2a$10$2URBYNnmBQq8NznDV7AFNugkP4fRboTREh3s/2pSA0MyJ6Oe3EJoK',
+			email: 'magda@wel.com',
+			is_manager: 1
 		}
 	])
 }

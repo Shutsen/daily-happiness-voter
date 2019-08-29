@@ -20,6 +20,7 @@
 				</div>
 				<div v-else>
 					<h2 class="title">{{ message }}<span v-if="user">, {{ user.first_name }}</span></h2>
+					<router-link v-if="user.is_manager" class="button is-primary is-medium mb-30px" to="/dashboard/manager">View your employee happiness</router-link>
 					<div>
 						<p>Today, you haven't voted yet!</p>
 						<p class="mb-30px">How are you feeling like?</p>
@@ -30,7 +31,6 @@
 						</div>
 						<p>All data is being registered anonymously.</p>
 					</div>
-					<router-link v-if="user.is_manager" class="button is-light is-medium" to="/dashboard/manager">View your employee happiness</router-link>
 				</div>
 			</div>
 		</div>
