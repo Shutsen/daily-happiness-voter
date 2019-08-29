@@ -17,6 +17,13 @@
 			<a class="navbar-item" :href="links.github" target="_blank">View source code</a>
 		</div>
 	</div>
+	<div class="navbar-end">
+		<div class="navbar-item">
+			<div class="buttons">
+				<router-link class="button is-light" to="/login">Log in</router-link>
+			</div>
+		</div>
+	</div>
 </nav>
 </template>
 
