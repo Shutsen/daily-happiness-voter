@@ -11,11 +11,10 @@ router.get('/:days', async ctx => {
 })
 
 router.post('/vote', async ctx => {
-	// to get from request
-	const email = 'vancampenhoutgeert@gmail.com'
+	const { score, user_id } = ctx.request.body
 
-	const response = await votes.addVote(ctx.request.body.score)
-	users.updateLastVotedAt(email)
+	const response = await votes.addVote(score)
+	users.updateLastVotedAt(user_id)
 	ctx.body = response
 })
 

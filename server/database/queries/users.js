@@ -73,11 +73,11 @@ Users.saveAuthToken = async (userEmail, token) => {
 	}
 }
 
-Users.updateLastVotedAt = async (email) => {
+Users.updateLastVotedAt = async (id) => {
 	try {
 		return await knex('users')
 			.update({ last_voted_at: getYearMonthDay() })
-			.where('email', email)
+			.where('id', id)
 
 	} catch(err) {
 		console.error('Users query: Failed to update last_voted_at')

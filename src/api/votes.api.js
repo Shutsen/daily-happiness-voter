@@ -23,9 +23,9 @@ Votes.getVotesForPeriod = async (days) => {
 /**
  * Vote happiness score for today
  */
-Votes.addVote = async (score) => {
+Votes.addVote = async (score, user_id) => {
 	try {
-		const response = await axios.post('/api/votes/vote', { score }, {
+		const response = await axios.post('/api/votes/vote', { score, user_id }, {
 			headers: { Authorization: `Bearer ${token}` }
 		})
 		return response.data

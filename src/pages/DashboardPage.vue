@@ -82,7 +82,7 @@ export default {
 			}
 		},
 		async onSelect(state) {
-			await votesApi.addVote(state.score)
+			await votesApi.addVote(state.score, this.user_id)
 			this.getUserDetail()
 		}
 	}

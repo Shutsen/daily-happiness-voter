@@ -116,10 +116,6 @@ exports.seed = async knex => {
 		{
 			date: '29/08/2019',
 			happiness_score: 0
-		},
-		{
-			date: '30/08/2019',
-			happiness_score: 4
 		}
 	])
 }
