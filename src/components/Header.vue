@@ -2,7 +2,7 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
 	<div class="navbar-brand">
 		<div class="navbar-item">
-			<img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+			<img src="/img/happy.png" width="28" height="28">
 		</div>
 
 		<a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -14,8 +14,7 @@
 
 	<div id="navbarBasicExample" class="navbar-menu">
 		<div class="navbar-start">
-			<router-link class="navbar-item" to="/">Home</router-link>
-			<a class="navbar-item" :href="links.github" target="_blank">Github repo</a>
+			<a class="navbar-item" :href="links.github" target="_blank">View source code</a>
 		</div>
 
 		<div class="navbar-end">
