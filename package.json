@@ -11,7 +11,7 @@
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --watch"
   },
   "author": "Geert Van Campenhout",
   "license": "ISC",
@@ -22,6 +22,7 @@
     "bcryptjs": "^2.4.3",
     "core-js": "^2.6.5",
     "dotenv": "^8.1.0",
+    "jest": "^24.9.0",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.19.2",
     "knex-migrate": "^1.7.2",
