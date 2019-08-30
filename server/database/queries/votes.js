@@ -5,7 +5,7 @@ let Votes = {}
 
 Votes.getVotesForPeriod = async (days) => {
 	try {
-		const response = await knex('daily_happiness')
+		const response = await knex('votes')
 			.orderBy('date', 'desc')
 			.select('*')
 			.limit(days)
@@ -20,18 +20,18 @@ Votes.getVotesForPeriod = async (days) => {
 Votes.addVote = async (score) => {
 	try {
 		const today = getYearMonthDay()
-		const response = await knex('daily_happiness')
+		const response = await knex('votes')
 			.select('*')
 			.where('date', today)
 
 		// today has no votes and thus does not exist in our db
 		if (!response.length) {
-			return await knex('daily_happiness')
+			return await knex('votes')
 				.insert({ date: today, happiness_score: score })
 		}
 
 		// today has votes, add the score to the total
-		return await knex('daily_happiness')
+		return await knex('votes')
 			.update({ happiness_score: knex.raw(`happiness_score + ${score}`) })
 			.where('date', today)
 	} catch(err) {
