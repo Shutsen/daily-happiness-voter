@@ -1,4 +1,8 @@
 const getDayMonthYearString = (dateObject = new Date()) => {
+	if (typeof dateObject === 'string') {
+		dateObject = new Date(dateObject)
+	}
+
 	const { day, month, year } = getYearMonthDayObject(dateObject)
 	return `${day}/${month}/${year}`
 }

@@ -5,12 +5,18 @@
 				<tr>
 					<th>Date</th>
 					<th class="text-center">Happiness score</th>
+					<th class="text-center">Positive votes</th>
+					<th class="text-center">Negative votes</th>
+					<th class="text-center">Neutral votes</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="day_score in daily_scores" :key="day_score.date">
-					<td>{{ day_score.date }}</td>
-					<td class="avg-score text-center" :class="getColorStyle(day_score)">{{ day_score.happiness_score }}</td>
+				<tr v-for="day in dailyScores" :key="day.date">
+					<td>{{ getDayMonthYearString(day.date) }}</td>
+					<td class="avg-score text-center" :class="getColorStyle(day)">{{ day.happiness_score }}</td>
+					<td class="avg-score text-center green">{{ day.positive }}</td>
+					<td class="avg-score text-center red">{{ day.negative }}</td>
+					<td class="avg-score text-center">{{ day.neutral }}</td>
 				</tr>
 			</tbody>
 		</table>
@@ -18,6 +24,8 @@
 </template>
 
 <script>
+import { getDayMonthYearString } from '../../utils/date'
+
 export default {
 	props: {
 		daily_scores: {
@@ -25,7 +33,17 @@ export default {
 			required: true
 		}
 	},
+	computed: {
+		dailyScores() {
+			return this.daily_scores.map(day => {
+				const score = day.positive - day.negative
+				day['happiness_score'] = score
+				return day
+			})
+		}
+	},
 	methods: {
+		getDayMonthYearString,
 		getColorStyle(day_score) {
 			if (day_score.happiness_score < 0) {
 				return ['red']
