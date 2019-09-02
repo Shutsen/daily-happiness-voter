@@ -16,7 +16,7 @@
 
 <script>
 import usersApi from '../api/users.api'
-import { getYearMonthDay } from '../../utils/date'
+import { getDayMonthYearString } from '../../utils/date'
 import HasVotedView from '../components/HasVotedView'
 import HasNotVotedView from '../components/HasNotVotedView'
 
@@ -32,11 +32,12 @@ export default {
 	},
 	async mounted() {
 		await this.getUserDetail()
+		console.log(typeof this.user.last_voted_at)
 		this.loaded = true
 	},
 	computed: {
 		hasVotedToday() {
-			const today = getYearMonthDay()
+			const today = getDayMonthYearString()
 			return this.user.last_voted_at === today
 		}
 	},

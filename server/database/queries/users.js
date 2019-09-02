@@ -1,12 +1,12 @@
 const knex = require('../connection')
-const { getYearMonthDay } = require('../../../utils/date')
+const { getDayMonthYearString } = require('../../../utils/date')
 
 let Users = {}
 
 Users.getAllUsers = async () => {
 	try {
 		const response = await knex('users')
-			.select('first_name', 'last_name', 'last_voted_at', 'is_manager')
+			.select('id', 'first_name', 'last_name', 'last_voted_at', 'is_manager')
 
 		return response
 	} catch(err) {
@@ -76,7 +76,7 @@ Users.saveAuthToken = async (userEmail, token) => {
 Users.updateLastVotedAt = async (id) => {
 	try {
 		return await knex('users')
-			.update({ last_voted_at: getYearMonthDay() })
+			.update({ last_voted_at: getDayMonthYearString() })
 			.where('id', id)
 
 	} catch(err) {

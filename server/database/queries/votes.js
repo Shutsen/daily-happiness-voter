@@ -1,5 +1,5 @@
 const knex = require('../connection')
-const { getYearMonthDay } = require('../../../utils/date')
+const { getTodayAndTomorrowObject } = require('../../../utils/date')
 
 let Votes = {}
 
@@ -17,23 +17,41 @@ Votes.getVotesForPeriod = async (days) => {
 	}
 }
 
+Votes.getTodayVotes = async () => {
+	const { today, tomorrow } = getTodayAndTomorrowObject()
+	const response = await knex('votes')
+		.select('*')
+		.where('date', '>=', `${today.year}-${today.month}-${today.day}T00:00:00Z`)
+		.where('date', '<', `${tomorrow.year}-${tomorrow.month}-${tomorrow.day}T00:00:00Z`)
+
+	return response
+}
+
 Votes.addVote = async (score) => {
 	try {
-		const today = getYearMonthDay()
-		const response = await knex('votes')
-			.select('*')
-			.where('date', today)
-
-		// today has no votes and thus does not exist in our db
-		if (!response.length) {
-			return await knex('votes')
-				.insert({ date: today, happiness_score: score })
+		const allowedScores = [-1, 0, 1]
+		if (allowedScores.indexOf(score) === -1) {
+			throw new Error('Invalid score')
 		}
 
-		// today has votes, add the score to the total
+		let positiveIncrement = 0
+		let negativeIncrement = 0
+		let neutralIncrement = 0
+
+		if (score > 0) positiveIncrement++
+		if (score < 0) negativeIncrement++
+		if (score == 0) neutralIncrement++
+
+		const { today, tomorrow } = getTodayAndTomorrowObject()
+
 		return await knex('votes')
-			.update({ happiness_score: knex.raw(`happiness_score + ${score}`) })
-			.where('date', today)
+			.increment({
+				positive: positiveIncrement,
+				negative: negativeIncrement,
+				neutral: neutralIncrement
+			})
+			.where('date', '>=', `${today.year}-${today.month}-${today.day}T00:00:00Z`)
+			.where('date', '<', `${tomorrow.year}-${tomorrow.month}-${tomorrow.day}T00:00:00Z`)
 	} catch(err) {
 		console.error('Votes query: Failed to vote')
 		throw err
