@@ -22,7 +22,7 @@
 <script>
 import InputText from '../components/input/InputText'
 import usersApi from '../api/users.api'
-import { EventBus } from '../utils/eventBus'
+import { setAuthenticatedState } from '../utils/auth'
 
 export default {
 	components: { InputText },
@@ -57,9 +57,7 @@ export default {
 			try {
 				const { email, password } = this
 				const response = await usersApi.login({ email, password })
-				localStorage.setItem('access_token', response.token)
-				localStorage.setItem('user_id', response.user_id)
-				EventBus.$emit('logged-in', response.token)
+				await setAuthenticatedState(response.token, response.user_id)
 				this.$snotify.success(response.message)
 				this.$router.push(`/dashboard`)
 			} catch(e) {

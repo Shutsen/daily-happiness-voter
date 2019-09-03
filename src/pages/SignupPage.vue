@@ -30,6 +30,7 @@
 <script>
 import InputText from '../components/input/InputText'
 import usersApi from '../api/users.api'
+import { setAuthenticatedState } from '../utils/auth'
 
 export default {
 	components: { InputText },
@@ -75,8 +76,7 @@ export default {
 			try {
 				const { first_name, last_name, email, password } = this
 				const response = await usersApi.signup({ first_name, last_name, email, password })
-				localStorage.setItem('access_token', response.token)
-				localStorage.setItem('user_id', response.user_id)
+				await setAuthenticatedState(response.token, response.user_id)
 				this.$snotify.success(response.message)
 				this.$router.push(`/dashboard`)
 			} catch(e) {

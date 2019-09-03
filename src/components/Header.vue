@@ -30,7 +30,7 @@
 
 <script>
 import { EventBus } from '../utils/eventBus'
-import { setAxiosAuthHeader, removeAxiosAuthHeader } from '../utils/axios'
+import { removeAuthenticatedState } from '../utils/auth'
 
 export default {
 	data() {
@@ -42,18 +42,15 @@ export default {
 		}
 	},
 	created() {
-		EventBus.$on('logged-in', (token) => {
+		EventBus.$on('logged-in', () => {
 			console.log('We can see you logged in, sincerely yours.. the header component')
 			this.isLoggedIn = true
-			setAxiosAuthHeader(token)
 		})
 	},
 	methods: {
 		logout() {
-			localStorage.removeItem('access_token')
-			localStorage.removeItem('user_id')
+			removeAuthenticatedState()
 			this.isLoggedIn = false
-			removeAxiosAuthHeader()
 			this.$router.push('/login')
 		}
 	}
