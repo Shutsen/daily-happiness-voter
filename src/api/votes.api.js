@@ -1,7 +1,5 @@
 import axios from 'axios'
 
-const token = localStorage.getItem('access_token')
-
 let Votes = {}
 
 /**
@@ -10,9 +8,7 @@ let Votes = {}
  */
 Votes.getVotesForPeriod = async (days) => {
 	try {
-		const response = await axios.get(`/api/votes/${days}`, {
-			headers: { Authorization: `Bearer ${token}` }
-		})
+		const response = await axios.get(`/api/votes/${days}`)
 		return response.data
 	} catch(e) {
 		console.error(e)
@@ -25,9 +21,7 @@ Votes.getVotesForPeriod = async (days) => {
  */
 Votes.addVote = async (score, user_id) => {
 	try {
-		const response = await axios.post('/api/votes', { score, user_id }, {
-			headers: { Authorization: `Bearer ${token}` }
-		})
+		const response = await axios.post('/api/votes', { score, user_id })
 		return response.data
 	} catch(e) {
 		console.error(e)

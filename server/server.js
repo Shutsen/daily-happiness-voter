@@ -18,9 +18,9 @@ const server = http.createServer(app.callback())
 
 cronSchedule()
 
-process.on('unhandledRejection', error => {
-	console.error('Log coming from unhandledRejection', error.message)
-	console.error(error)
+process.on('unhandledRejection', err => {
+	console.error('Log coming from unhandledRejection', err.message)
+	console.error(err)
 })
 
 app.on('error', (err) => {

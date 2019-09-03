@@ -22,6 +22,7 @@
 <script>
 import InputText from '../components/input/InputText'
 import usersApi from '../api/users.api'
+import { EventBus } from '../utils/eventBus'
 
 export default {
 	components: { InputText },
@@ -58,6 +59,7 @@ export default {
 				const response = await usersApi.login({ email, password })
 				localStorage.setItem('access_token', response.token)
 				localStorage.setItem('user_id', response.user_id)
+				EventBus.$emit('logged-in', response.token)
 				this.$snotify.success(response.message)
 				this.$router.push(`/dashboard`)
 			} catch(e) {

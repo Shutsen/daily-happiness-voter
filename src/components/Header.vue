@@ -20,7 +20,8 @@
 	<div class="navbar-end">
 		<div class="navbar-item">
 			<div class="buttons">
-				<router-link class="button is-light" to="/login">Log in</router-link>
+				<router-link v-if="!isLoggedIn" class="button is-light" to="/login">Log in</router-link>
+				<div v-else class="button is-light" @click="logout">Log out</div>
 			</div>
 		</div>
 	</div>
@@ -28,12 +29,32 @@
 </template>
 
 <script>
+import { EventBus } from '../utils/eventBus'
+import { setAxiosAuthHeader, removeAxiosAuthHeader } from '../utils/axios'
+
 export default {
 	data() {
 		return {
 			links: {
 				github: 'https://github.com/Shutsen/daily-happiness-voter',
-			}
+			},
+			isLoggedIn: false
+		}
+	},
+	created() {
+		EventBus.$on('logged-in', (token) => {
+			console.log('We can see you logged in, sincerely yours.. the header component')
+			this.isLoggedIn = true
+			setAxiosAuthHeader(token)
+		})
+	},
+	methods: {
+		logout() {
+			localStorage.removeItem('access_token')
+			localStorage.removeItem('user_id')
+			this.isLoggedIn = false
+			removeAxiosAuthHeader()
+			this.$router.push('/login')
 		}
 	}
 }
