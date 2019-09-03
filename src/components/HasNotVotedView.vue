@@ -34,7 +34,6 @@ export default {
 	},
 	methods: {
 		async onSelect(state) {
-			console.log(state)
 			await votesApi.addVote(state.score, this.user_id)
 			this.$emit('voted')
 		}

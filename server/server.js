@@ -8,6 +8,7 @@ const cors = require('@koa/cors')
 const KoaRouter = require('koa-router')
 const jwt = require('koa-jwt')
 const api = require('./api')
+const cronSchedule = require('./controllers/cron')
 
 const app = new Koa()
 const router = new KoaRouter()
@@ -15,13 +16,15 @@ const port = process.env.PORT || 3000
 
 const server = http.createServer(app.callback())
 
+cronSchedule()
+
 process.on('unhandledRejection', error => {
 	console.error('Log coming from unhandledRejection', error.message)
 	console.error(error)
 })
 
 app.on('error', (err) => {
-	console.error(err)
+	console.error('Damn this ain\'t working!', err)
 })
 
 app.use(cors())

@@ -31,6 +31,7 @@
     "koa-helmet": "^5.1.0",
     "koa-jwt": "^3.6.0",
     "koa-router": "^7.4.0",
+    "node-cron": "^2.0.3",
     "pg": "^7.12.1",
     "validator": "^11.1.0",
     "vue": "^2.6.10",
