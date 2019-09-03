@@ -32,7 +32,6 @@ export default {
 	},
 	async mounted() {
 		await this.getUserDetail()
-		console.log(typeof this.user.last_voted_at)
 		this.loaded = true
 	},
 	computed: {
