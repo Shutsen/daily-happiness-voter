@@ -2,6 +2,7 @@ const Router = require('koa-router')
 const router = new Router()
 const { sendWelcomeEmail } = require('../services/emails/account')
 const { escape } = require('validator')
+const { isValidEmail } = require('../../utils/validation')
 
 const auth = require('../services/auth')
 const users = require('../database/queries/users')
@@ -19,6 +20,10 @@ router.get('/:user_id', async ctx => {
 
 router.post('/signup', async ctx => {
 	let { first_name, last_name, email, password } = ctx.request.body
+
+	if (!isValidEmail(email)) {
+		return ctx.body = { message: 'Please provide a valid email' }
+	}
 
 	// check if email already exists - if so return early
 	const existingUser = await users.getUserByEmail(email)
