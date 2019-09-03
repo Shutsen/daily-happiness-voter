@@ -29,11 +29,6 @@ Votes.getTodayVotes = async () => {
 
 Votes.addVote = async (score) => {
 	try {
-		const allowedScores = [-1, 0, 1]
-		if (allowedScores.indexOf(score) === -1) {
-			throw new Error('Invalid score')
-		}
-
 		let positiveIncrement = 0
 		let negativeIncrement = 0
 		let neutralIncrement = 0
