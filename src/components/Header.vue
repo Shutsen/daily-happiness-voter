@@ -43,7 +43,6 @@ export default {
 	},
 	created() {
 		EventBus.$on('logged-in', () => {
-			console.log('We can see you logged in, sincerely yours.. the header component')
 			this.isLoggedIn = true
 		})
 	},

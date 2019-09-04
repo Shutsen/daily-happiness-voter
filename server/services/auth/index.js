@@ -35,26 +35,4 @@ Auth.generateAuthToken = (user) => {
 	return token
 }
 
-/**
- * Verifies a token
- */
-Auth.verify = (token) => {
-	return jwt.verify(token, process.env.JWT_KEY)
-}
-
-/**
- * Decodes a token
- */
-Auth.decode = (token) => {
-	return jwt.decode(token, process.env.JWT_KEY)
-}
-
-/**
- * Decodes a token from the bearerToken
- */
-Auth.decodeBearer = (bearerToken) => {
-	const token = bearerToken.split(' ')[1]
-	return Auth.decode(token)
-}
-
 module.exports = Auth

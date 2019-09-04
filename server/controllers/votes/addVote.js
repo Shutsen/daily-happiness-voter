@@ -1,12 +1,10 @@
 const votes = require('../../database/queries/votes')
 const users = require('../../database/queries/users')
-const auth = require('../../services/auth')
 
 const addVote = async (ctx) => {
-	const decodedToken = auth.decodeBearer(ctx.request.header.authorization)
-	const user_id = decodedToken.id
-
+	const user_id = ctx.state.user.id
 	const { score } = ctx.request.body
+	
 	const allowedScores = [-1, 0, 1]
 	if (allowedScores.indexOf(score) === -1) {
 		throw new Error('Invalid score')
