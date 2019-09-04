@@ -6,6 +6,7 @@ import SignupPage from './pages/SignupPage.vue'
 import LoginPage from './pages/LoginPage.vue'
 import DashboardPage from './pages/DashboardPage.vue'
 import ManagerPage from './pages/ManagerPage.vue'
+import NotFoundPage from './pages/NotFoundPage.vue'
 
 Vue.use(Router)
 
@@ -31,6 +32,10 @@ const router = new Router({
 		{
 			path: '/dashboard',
 			component: DashboardPage
+		},
+		{
+			path: '/*',
+			component: NotFoundPage
 		}
 	]
 })
