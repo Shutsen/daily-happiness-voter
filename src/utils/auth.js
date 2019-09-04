@@ -2,13 +2,20 @@ import { EventBus } from './eventBus'
 import { setAxiosAuthHeader, removeAxiosAuthHeader } from '../utils/axios'
 import cookie from './cookies'
 import router from '../router'
+import jwt from 'jsonwebtoken'
 
 let Auth = {}
+
+Auth.getUserId = () => {
+	const token = cookie.getCookie('happiness_voter')
+	const decoded = jwt.decode(token, process.env.JWT_KEY)
+	return decoded.id
+}
 
 Auth.setAuthenticatedState = (token) => {
 	setAxiosAuthHeader(token)
 	cookie.setCookie('happiness_voter', token)
-	EventBus.$emit('logged-in', token)
+	EventBus.$emit('logged-in')
 }
 
 Auth.removeAuthenticatedState = () => {
@@ -20,7 +27,7 @@ Auth.checkAuth = () => {
 	const token = cookie.getCookie('happiness_voter')
 	if (token) {
 		setAxiosAuthHeader(token)
-		EventBus.$emit('logged-in', token)
+		EventBus.$emit('logged-in')
 		return
 	}
 	router.push('/')

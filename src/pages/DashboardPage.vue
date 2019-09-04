@@ -19,18 +19,20 @@ import usersApi from '../api/users.api'
 import { getDayMonthYearString } from '../../utils/date'
 import HasVotedView from '../components/HasVotedView'
 import HasNotVotedView from '../components/HasNotVotedView'
+import auth from '../utils/auth'
 
 export default {
 	components: { HasVotedView, HasNotVotedView },
 	data() {
 		return {
 			user: null,
-			user_id: localStorage.getItem('user_id'),
+			user_id: null,
 			error: false,
 			loaded: false
 		}
 	},
 	async mounted() {
+		this.user_id = auth.getUserId()
 		await this.getUserDetail()
 		this.loaded = true
 	},
