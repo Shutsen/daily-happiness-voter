@@ -12,6 +12,7 @@
 					</div>
 					<div class="control">
 						<button @click="login" class="button is-primary is-medium">Login</button>
+						<router-link class="button is-light is-medium ml-10px" :to="`/signup`">Or sign up</router-link>
 					</div>
 				</div>
 			</div>
