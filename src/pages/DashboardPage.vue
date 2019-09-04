@@ -8,7 +8,7 @@
 					<router-link class="button is-light is-medium" :to="`/login`">Try again</router-link>
 				</div>
 				<HasVotedView v-else-if="hasVotedToday" :user="user"/>
-				<HasNotVotedView v-else :user="user" :user_id="user_id" @voted="getUserDetail"/>
+				<HasNotVotedView v-else :user="user" @voted="getUserDetail"/>
 			</div>
 		</div>
 	</section>

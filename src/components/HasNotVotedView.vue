@@ -21,7 +21,7 @@ import Card from '../components/Card'
 
 export default {
 	components: { Card },
-	props: [ 'user', 'user_id' ],
+	props: [ 'user' ],
 	data() {
 		return {
 			message: 'Welcome to your dashboard',
@@ -34,7 +34,7 @@ export default {
 	},
 	methods: {
 		async onSelect(state) {
-			await votesApi.addVote(state.score, this.user_id)
+			await votesApi.addVote(state.score)
 			this.$emit('voted')
 		}
 	}
