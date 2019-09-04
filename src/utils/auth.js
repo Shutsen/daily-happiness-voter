@@ -1,20 +1,29 @@
-const { EventBus } = require('./eventBus')
-const { setAxiosAuthHeader, removeAxiosAuthHeader } = require('../utils/axios')
+import { EventBus } from './eventBus'
+import { setAxiosAuthHeader, removeAxiosAuthHeader } from '../utils/axios'
+import cookie from './cookies'
+import router from '../router'
 
-const setAuthenticatedState = (token, user_id) => {
+let Auth = {}
+
+Auth.setAuthenticatedState = (token) => {
 	setAxiosAuthHeader(token)
-	localStorage.setItem('access_token', token)
-	localStorage.setItem('user_id', user_id)
+	cookie.setCookie('happiness_voter', token)
 	EventBus.$emit('logged-in', token)
 }
 
-const removeAuthenticatedState = () => {
-	localStorage.removeItem('access_token')
-	localStorage.removeItem('user_id')
+Auth.removeAuthenticatedState = () => {
+	cookie.removeCookie('happiness_voter')
 	removeAxiosAuthHeader()
 }
 
-module.exports = {
-	setAuthenticatedState,
-	removeAuthenticatedState
+Auth.checkAuth = () => {
+	const token = cookie.getCookie('happiness_voter')
+	if (token) {
+		setAxiosAuthHeader(token)
+		EventBus.$emit('logged-in', token)
+		return
+	}
+	router.push('/')
 }
+
+export default Auth

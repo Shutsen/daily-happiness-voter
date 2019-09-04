@@ -33,6 +33,7 @@
     "koa-router": "^7.4.0",
     "node-cron": "^2.0.3",
     "pg": "^7.12.1",
+    "universal-cookie": "^4.0.2",
     "validator": "^11.1.0",
     "vue": "^2.6.10",
     "vue-router": "^3.1.2",

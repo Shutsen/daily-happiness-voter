@@ -30,7 +30,7 @@
 
 <script>
 import { EventBus } from '../utils/eventBus'
-import { removeAuthenticatedState } from '../utils/auth'
+import auth from '../utils/auth'
 
 export default {
 	data() {
@@ -48,7 +48,7 @@ export default {
 	},
 	methods: {
 		logout() {
-			removeAuthenticatedState()
+			auth.removeAuthenticatedState()
 			this.isLoggedIn = false
 			this.$router.push('/login')
 		}
