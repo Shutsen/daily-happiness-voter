@@ -23,6 +23,13 @@ exports.seed = async knex => {
 			email: 'conny@komen.com'
 		},
 		{ 
+			id: "767cfa91-bb5d-4a0d-904e-4cb711a5569e",
+			first_name: 'Ben',
+			last_name: 'Dover',
+			password: '$2a$10$fKcMmOP0Atz/gIolTeFX8up8c7MVNs8Gx8jZlXa.jOxKdHv2DHeZy',
+			email: 'ben@dover.com'
+		},
+		{ 
 			id: "2dbd864f-5005-4a2e-9e98-21a289a86eca",
 			first_name: 'Magda',
 			last_name: 'Wel',
