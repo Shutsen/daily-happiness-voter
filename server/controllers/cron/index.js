@@ -3,11 +3,13 @@ const knex = require('../../database/connection')
 
 // schedule tasks to be run on the server
 const cronSchedule = () => {
-	cron.schedule("0 0 * * *", async () => {
+	cron.schedule("59 23 * * *", async () => {
 		try {
 			console.log("---------------------")
 			console.log("Running Cron Job")
-			const today = new Date()
+			let today = new Date()
+			// every day at 23:59 we add the next day as an extra row in the votes table
+			today.setDate(today.getDate() + 1)
 			const response = await knex('votes')
 				.insert({
 					date: today,
