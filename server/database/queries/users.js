@@ -62,17 +62,6 @@ Users.signup = async ({ first_name, last_name, email, password }) => {
 	}
 }
 
-Users.saveAuthToken = async (userEmail, token) => {
-	try {
-		await knex('users')
-			.update('token', token)
-			.where('email', userEmail)
-	} catch(err) {
-		console.error('Users query: Failed to save token')
-		throw err
-	}
-}
-
 Users.updateLastVotedAt = async (id) => {
 	try {
 		return await knex('users')

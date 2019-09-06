@@ -19,11 +19,9 @@ const signupUser = async (ctx) => {
 	password = await auth.hash(password)
 	const user = await users.signup({ first_name, last_name, email, password })
 
-	const token = auth.generateAuthToken(user)
-	users.saveAuthToken(email, token)
-
 	sendWelcomeEmail(email, first_name)
 
+	const token = auth.generateAuthToken(user)
 	ctx.body = {
 		message: `Sweet! Succesfully signed you up, ${first_name}!`,
 		user_id: user.id,

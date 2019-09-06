@@ -19,8 +19,6 @@ const loginUser = async (ctx) => {
 	}
 
 	const token = auth.generateAuthToken(user)
-	users.saveAuthToken(user.email, token)
-
 	return ctx.body = {
 		message: 'Succesfully logged in',
 		user_id: user.id,
