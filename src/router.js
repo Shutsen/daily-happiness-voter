@@ -15,26 +15,36 @@ const router = new Router({
 	routes: [
 		{
 			path: '/',
+			name: 'landing',
+			meta: { public: true },
 			component: LandingPage
 		},
 		{
 			path: '/signup',
+			name: 'signup',
+			meta: { public: true },
 			component: SignupPage
 		},
 		{
 			path: '/login',
+			name: 'login',
+			meta: { public: true },
 			component: LoginPage
 		},
 		{
 			path: '/dashboard/manager',
+			name: 'dashboard-manager',
+			meta: { manager: true },
 			component: ManagerPage
 		},
 		{
 			path: '/dashboard',
+			name: 'dashboard',
 			component: DashboardPage
 		},
 		{
 			path: '/*',
+			name: 'not-found',
 			component: NotFoundPage
 		}
 	]

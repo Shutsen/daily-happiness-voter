@@ -12,6 +12,15 @@ Auth.getUserId = () => {
 	return decoded.id
 }
 
+Auth.isManager = () => {
+	const token = cookie.getCookie('happiness_voter')
+	if (!token) {
+		return false
+	}
+	const decoded = jwt.decode(token, process.env.JWT_KEY)
+	return !!decoded.is_manager
+}
+
 Auth.setAuthenticatedState = (token) => {
 	setAxiosAuthHeader(token)
 	cookie.setCookie('happiness_voter', token)
@@ -31,6 +40,11 @@ Auth.checkAuth = () => {
 		return
 	}
 	router.push('/')
+}
+
+Auth.isAuthenticated = () => {
+	const token = cookie.getCookie('happiness_voter')
+	return !!token	
 }
 
 export default Auth

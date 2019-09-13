@@ -10,6 +10,7 @@
 <script>
 import Header from './components/Header'
 import auth from './utils/auth'
+import app from './utils/app'
 
 export default {
   name: 'app',
@@ -20,6 +21,8 @@ export default {
     }
   },
   async mounted() {
+    await app.waitForRouter()
+    await app.load()
     auth.checkAuth()
     this.loaded = true
   }
