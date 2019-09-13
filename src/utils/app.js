@@ -8,9 +8,11 @@ let _loaded = false
 router.beforeEach(async (to, from, next) => {
 	if (!to.meta.public && !auth.isAuthenticated()) {
 		next('/login')
-	} 
+	}
 
+	console.log('to: \n', to, to.meta.manager, '\n manager: \n', auth.isManager())
 	if (to.meta.manager && !auth.isManager()) {
+		console.log('redirectinnnn')
 		next('/dashboard')
 	}
 	await next()

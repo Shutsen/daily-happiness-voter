@@ -31,7 +31,12 @@ Auth.authenticate = async (inputPassword, hashedPassword) => {
  * @returns {String} token - the generated token
  */
 Auth.generateAuthToken = (user) => {
-	const token = jwt.sign({ id: user.id }, process.env.JWT_KEY)
+	const userDetails = {
+		id: user.id, 
+		email: user.email,
+		is_manager: user.is_manager
+	}
+	const token = jwt.sign(userDetails, process.env.JWT_KEY, { expiresIn: "7d" })
 	return token
 }
 
