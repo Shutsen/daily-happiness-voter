@@ -18,9 +18,14 @@ const server = http.createServer(app.callback())
 
 cronSchedule()
 
-process.on('unhandledRejection', err => {
-	console.error('Log coming from unhandledRejection', err.message)
-	console.error(err)
+app.use(async (ctx, next) => {
+	try {
+		await next()
+	} catch (err) {
+		ctx.status = 400
+		ctx.body = `Uh-oh: ${err.message}`
+		console.log('Error handler:', err.message)
+	}
 })
 
 app.on('error', (err) => {
