@@ -34,7 +34,7 @@
     "node-cron": "^2.0.3",
     "pg": "^7.12.1",
     "universal-cookie": "^4.0.2",
-    "validator": "^11.1.0",
+    "validator": "^13.7.0",
     "vue": "^2.6.10",
     "vue-router": "^3.1.2",
     "vue-snotify": "^3.2.1"
